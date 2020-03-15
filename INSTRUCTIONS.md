@@ -14,15 +14,15 @@ Build out the server-side logic to compute the numbers as appropriate. The serve
 
 ### History
 
-Keep a historical record of all math operations and solutions on the server. Display a list of all previous calculations on the page when it loads using a GET request. Update the list when a new calculation is made.
+<!-- Keep a historical record of all math operations and solutions on the server. Display a list of all previous calculations on the page when it loads using a GET request. Update the list when a new calculation is made. -->
 
-> NOTE: History should exist even after refreshing the page. It's expected that the history will go away after restarting the server. We'll talk about long term data storage next week.
+<!-- > NOTE: History should exist even after refreshing the page. It's expected that the history will go away after restarting the server. We'll talk about long term data storage next week. -->
 
 ---
-![base mode interface](images/baseMode.png)
+<!-- ![base mode interface](images/baseMode.png)
 ---
 
-> Note: Do not use eval() to complete this assignment.
+> Note: Do not use eval() to complete this assignment. -->
 
 ## Stretch Goals
 
@@ -34,9 +34,9 @@ Keep a historical record of all math operations and solutions on the server. Dis
 ![calculator interface](images/stretchGoal_interface.gif)
 ---
 
-- Only allow the POST call to happen if all necessary input is ready.
+<!-- - Only allow the POST call to happen if all necessary input is ready.
 
-  *Data integrity is superfluously important! Sometimes users hit tje "go button" without fully inputting the needed fields. Show an alert if they left something empty and don't send bad or incomplete data to the server.*
+  *Data integrity is superfluously important! Sometimes users hit tje "go button" without fully inputting the needed fields. Show an alert if they left something empty and don't send bad or incomplete data to the server.* -->
 
 - Allow a user to clear the history by clicking on a button. Technically this shouldn't be a GET or a POST. Look into making a DELETE request!
 

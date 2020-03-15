@@ -1,9 +1,11 @@
 $( document ).ready( ready );
 
-let operator;
+let operator = null;
 
 function ready() {
     console.log( 'jQuery Ready on the client.');
+
+    appendCalculationsToDom();
 
     $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).on( 'click', getOperator );
     $( '#equals-btn' ).on( 'click', calculate );
@@ -30,31 +32,48 @@ function getOperator( event ) {
 function calculate( event ) {
     event.preventDefault();
 
-    let num1 = $( '#num1-in' ).val();
-    let num2 = $( '#num2-in' ).val();
+    if ( validateInputs() ) {
+        let num1 = $( '#num1-in' ).val();
+        let num2 = $( '#num2-in' ).val();
 
-    let equation = {
-        num1,
-        num2,
-        operator
-    };
+        let equation = {
+            num1,
+            num2,
+            operator
+        };
 
-    $.ajax({
-        method: 'POST',
-        url: '/calculate',
-        data: equation
-    })
-    .then( function( response ) {
-        console.log( 'Got response from server in calculate', response );
-    })
-    .catch( function( error ) {
-        console.log( 'Error', error );
-    })
+        $.ajax({
+            method: 'POST',
+            url: '/calculate',
+            data: equation
+        })
+        .then( function( response ) {
+            console.log( 'Got response from server in calculate', response );
+        })
+        .catch( function( error ) {
+            console.log( 'Error', error );
+        })
 
-    console.log( 'Sending Equation to server', equation );
+        console.log( 'Sending Equation to server', equation );
 
-    appendCalculationsToDom();
+        appendCalculationsToDom();
 
+        operator = null;
+    }
+    else {
+        alert( 'Please input all parts of the equation.' );
+    }
+};
+
+function validateInputs() {
+    console.log( 'Validating inputs' );
+    
+    if ( $( '#num1-in' ).val() === '' || $( '#num2-in' ).val() == '' || operator === null ) {
+        return false;
+    }
+    else {
+        return true
+    }
 };
 
 function appendCalculationsToDom() {
