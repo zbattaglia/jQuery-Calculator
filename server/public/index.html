@@ -15,22 +15,21 @@
     <form class="container-fluid" id="input-form">
             <div class="row">
                 <div class="col-sm-auto" id="display">
-                    <!-- <input type="number" id="num1-in" />
-                    <input type="number" id="num2-in" /> -->
+                <!-- jQuery to fill in -->
                 </div>
             </div>
         <div class="row">
             <div class="col-sm-auto">
-                <button id="7"> 7 </button>
+                <button class ="number-in" id="7"> 7 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="7"> 8 </button>
+                <button class ="number-in" id="8"> 8 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="7"> 9 </button>
+                <button class ="number-in" id="9"> 9 </button>
             </div>
             <div class="col-sm-auto">
-                <button class="operator" id="add-btn"> + </button >
+                <button class="operator" id="add-btn" data-operator="+"> + </button >
             </div>
             <div class="col-sm-auto">
                 <button id="clear-btn"> C </button>
@@ -39,16 +38,16 @@
 
         <div class="row">
             <div class="col-sm-auto">
-                <button id="4"> 4 </button>
+                <button class ="number-in" id="4"> 4 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="5"> 5 </button>
+                <button class ="number-in" id="5"> 5 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="6"> 6 </button>
+                <button class ="number-in" id="6"> 6 </button>
             </div>
             <div class="col-sm-auto">
-                <button class="operator" id="subtract-btn"> - </button>
+                <button class="operator" id="subtract-btn" data-operator="-"> - </button>
             </div>
             <div class="col-sm-auto">
                 <button id="reset-btn"> &#8635 </button>
@@ -57,31 +56,31 @@
 
         <div class="row">
             <div class="col-sm-auto">
-                <button id="1"> 1 </button>
+                <button class ="number-in" id="1"> 1 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="2"> 2 </button>
+                <button class ="number-in" id="2"> 2 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="3"> 3 </button>
+                <button class ="number-in" id="3"> 3 </button>
             </div>
             <div class="col-sm-auto">
-                <button class="operator" id="multiply-btn"> * </button>
+                <button class="operator" id="multiply-btn" data-operator="*"> * </button>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-auto">
-                <button id="0"> 0 </button>
+                <button class ="number-in" id="0"> 0 </button>
             </div>
             <div class="col-sm-auto">
-                <button id="decimal"> . </button>
+                <button class ="number-in" id="."> . </button>
             </div>
             <div class="col-sm-auto">
                 <button id="equals-btn"> = </button>
             </div>
             <div class="col-sm-auto">
-                <button class="operator" id="divide-btn"> / </button>
+                <button class="operator" id="divide-btn" data-operator="/"> / </button>
             </div>
         </div>
     </form>

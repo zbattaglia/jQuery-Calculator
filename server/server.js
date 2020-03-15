@@ -42,7 +42,6 @@ app.post( '/calculate', ( req, res ) => {
 
     req.body.result = result;
     req.body.operator = operator;
-    // calculationsArray.push( req.body );
     calculationsArray.unshift( req.body );
 
     console.log( 'Stored calculation on server', calculationsArray );

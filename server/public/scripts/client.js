@@ -1,18 +1,35 @@
 $( document ).ready( ready );
 
 let operator = null;
+let number = '';
+let num1;
+let num2;
+let complete = false;
 
 function ready() {
     console.log( 'jQuery Ready on the client.');
 
+    // $( '#display' ).empty();
     appendCalculationsToDom();
 
     $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).on( 'click', getOperator );
     $( '#equals-btn' ).on( 'click', calculate );
     $( '#clear-btn' ).on( 'click', clearInputs );
     $( '#reset-btn' ).on( 'click', clearHistory );
+    $( '.number-in' ).on( 'click', updateDisplay );
 
 };
+
+function updateDisplay( event ) {
+    event.preventDefault();
+    if ( complete === true ) {
+        $( '#display' ).empty();
+        complete = false;
+    }
+    console.log( 'Getting number input', this.id );
+    $( '#display' ).append( this.id );
+    number += this.id;
+}
 
 function clearHistory( event ) {
     event.preventDefault();
@@ -36,25 +53,30 @@ function clearHistory( event ) {
 function clearInputs( event ) {
     event.preventDefault();
     console.log( 'Clearing inputs' );
-    $( '.operator' ).removeClass( 'selected' );
-    $( '#num1-in' ).val('');
-    $( '#num2-in' ).val('');
+    operator = null;
+    num1 = '';
+    num2 = '';
+    $( '#display' ).empty();
 };
 
 function getOperator( event ) {
     event.preventDefault();
-    $( '.operator' ).removeClass( 'selected' );
     operator = this.id;
-    $(this).addClass( 'selected' );
-    console.log( 'Setting operator to:', operator );
+    num1 = Number( number );
+    number = '';
+    console.log( 'Setting operator to:', $(this).data() );
+    console.log( 'num1 is', num1);
+    complete = false;
+    $( '#display' ).append(` ${$(this).data().operator} `)
 };
 
 function calculate( event ) {
     event.preventDefault();
 
+    num2 = Number( number );
+    number = '';
+
     if ( validateInputs() ) {
-        let num1 = $( '#num1-in' ).val();
-        let num2 = $( '#num2-in' ).val();
 
         let equation = {
             num1,
@@ -83,12 +105,13 @@ function calculate( event ) {
     else {
         alert( 'Please input all parts of the equation.' );
     }
+    complete = true;
 };
 
 function validateInputs() {
     console.log( 'Validating inputs' );
     
-    if ( $( '#num1-in' ).val() === '' || $( '#num2-in' ).val() == '' || operator === null ) {
+    if ( num1 === '' || num2 == '' || operator === null ) {
         return false;
     }
     else {
@@ -110,10 +133,11 @@ function appendCalculationsToDom() {
         if ( result != undefined ) {
             console.log( 'Got result from server', result );
             let currentResult = result[0].result;
-            for ( let i = result.length-1; i > 0; i-- ) {
+            for ( let i = 0; i < result.length; i++ ) {
                 history.append(`<li>${result[i].num1} ${result[i].operator} ${result[i].num2} = ${result[i].result}</li>`)
             }
-            $( '#currentResult' ).append( `<h2> ${currentResult} </h2>` );
+            $( '#display' ).empty();
+            $( '#display' ).append( `<p style="text-align:center">${currentResult}</p>` );
         }
     })
     
