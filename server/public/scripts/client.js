@@ -47,7 +47,6 @@ function getOperator( event ) {
     operator = this.id;
     $(this).addClass( 'selected' );
     console.log( 'Setting operator to:', operator );
-
 };
 
 function calculate( event ) {

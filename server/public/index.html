@@ -13,21 +13,83 @@
 <body>
     <h1>Server Side Calculator</h1>
     <form class="container-fluid" id="input-form">
-        <input type="number" id="num1-in" />
-        <button class="operator" id="add-btn"> + </button >
-        <button class="operator" id="subtract-btn"> - </button>
-        <button class="operator" id="multiply-btn"> * </button>
-        <button class="operator" id="divide-btn"> / </button>
-        <input type="number" id="num2-in" />
-        <button id="equals-btn"> = </button>
-        <br />
-        <button id="clear-btn"> C </button>
-        <button id="reset-btn"> &#8635 </button>
+            <div class="row">
+                <div class="col-sm-auto" id="display">
+                    <!-- <input type="number" id="num1-in" />
+                    <input type="number" id="num2-in" /> -->
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-auto">
+                <button id="7"> 7 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="7"> 8 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="7"> 9 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button class="operator" id="add-btn"> + </button >
+            </div>
+            <div class="col-sm-auto">
+                <button id="clear-btn"> C </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-auto">
+                <button id="4"> 4 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="5"> 5 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="6"> 6 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button class="operator" id="subtract-btn"> - </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="reset-btn"> &#8635 </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-auto">
+                <button id="1"> 1 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="2"> 2 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="3"> 3 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button class="operator" id="multiply-btn"> * </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-auto">
+                <button id="0"> 0 </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="decimal"> . </button>
+            </div>
+            <div class="col-sm-auto">
+                <button id="equals-btn"> = </button>
+            </div>
+            <div class="col-sm-auto">
+                <button class="operator" id="divide-btn"> / </button>
+            </div>
+        </div>
     </form>
-    <h2 id="currentResult"></h2>
     <section id="calculationHistory">
-        <ul id="calculationList">
-            <!-- jQuery to fill in -->
+        <h2 id="currentResult"></h2>
+        <section id="calculationHistory">
+            <ul id="calculationList">
+             <!-- jQuery to fill in -->
         </ul>
     </section>
 </body>

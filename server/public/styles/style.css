@@ -1,8 +1,53 @@
-/* button {
-    margin: 2px;;
-} */
+body {
+    background-image: url(https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1442825617000/photosp/20328bfc-b5cb-41a4-babc-fe5349e9fb8f/stock-photo-education-compass-paper-sheet-pencil-scissors-school-crayons-clip-20328bfc-b5cb-41a4-babc-fe5349e9fb8f.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .selected {
     border: solid;
     border-color: yellow;
+}
+
+h1 {
+    text-align: center;
+    border-bottom: solid;
+    color: white;
+}
+
+#input-form {
+    text-align: center;
+    width: 25%;
+    border: solid;
+    padding-top: 10px;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+    background-color: #ADD8E6;
+}
+
+button {
+    margin: 3px;
+    width: 40px;
+}
+
+.row {
+    padding: 0px;
+    margin: 0px;
+}
+
+.col-sm-auto {
+    padding: 0px;
+    margin: 0px;
+}
+
+#calculationHistory {
+    text-align: center;
+    list-style: inside;
+}
+
+#display {
+    height: 2em;
+    width: 300px;
+    background-color: white;
 }
