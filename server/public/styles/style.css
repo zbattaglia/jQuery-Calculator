@@ -1,3 +1,8 @@
 /* button {
     margin: 2px;;
 } */
+
+.selected {
+    border: solid;
+    border-color: yellow;
+}

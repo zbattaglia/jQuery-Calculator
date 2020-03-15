@@ -18,6 +18,8 @@ function clearHistory( event ) {
     event.preventDefault();
     console.log( 'Resetting History' );
     
+    clearInputs( event );
+
     $.ajax({
         method: 'DELETE',
         url: '/delete'
@@ -34,15 +36,16 @@ function clearHistory( event ) {
 function clearInputs( event ) {
     event.preventDefault();
     console.log( 'Clearing inputs' );
-    
+    $( '.operator' ).removeClass( 'selected' );
     $( '#num1-in' ).val('');
     $( '#num2-in' ).val('');
 };
 
 function getOperator( event ) {
     event.preventDefault();
-
+    $( '.operator' ).removeClass( 'selected' );
     operator = this.id;
+    $(this).addClass( 'selected' );
     console.log( 'Setting operator to:', operator );
 
 };
