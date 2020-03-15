@@ -1,7 +1,6 @@
 $( document ).ready( ready );
 
 let operator = null;
-let number = '';
 let num1;
 let num2;
 let complete = false;
@@ -9,7 +8,7 @@ let complete = false;
 function ready() {
     console.log( 'jQuery Ready on the client.');
 
-    // $( '#display' ).empty();
+
     appendCalculationsToDom();
 
     $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).on( 'click', getOperator );
@@ -17,18 +16,35 @@ function ready() {
     $( '#clear-btn' ).on( 'click', clearInputs );
     $( '#reset-btn' ).on( 'click', clearHistory );
     $( '.number-in' ).on( 'click', updateDisplay );
+    $( '#calculationList' ).on( 'click', 'li', redoCalc );
 
 };
 
+function redoCalc( event ) {
+    event.preventDefault();
+    console.log( 'Removing event', $(this).closest( 'li' ).text() );
+    let previousEquation = $(this).closest( 'li' ).text().trim().split( ' ' )
+    console.log( 'The previous equation is', previousEquation );
+    
+    postToServer({
+        num1 : Number( previousEquation[0] ),
+        num2 : Number( previousEquation[2] ),
+        operator : previousEquation[1]
+    })
+}
+
 function updateDisplay( event ) {
     event.preventDefault();
+    console.log( 'Updating display with:', $(this).text() );
+    
     if ( complete === true ) {
         $( '#display' ).empty();
         complete = false;
     }
-    console.log( 'Getting number input', this.id );
-    $( '#display' ).append( this.id );
-    number += this.id;
+    if ( this.id === 'decimal-btn' ) {
+        $( '#decimal-btn' ).prop( 'disabled', true )
+    }
+    $( '#display' ).append( $(this).text() );
 }
 
 function clearHistory( event ) {
@@ -57,24 +73,28 @@ function clearInputs( event ) {
     num1 = '';
     num2 = '';
     $( '#display' ).empty();
+    $( '#decimal-btn' ).prop( 'disabled', false );
+    $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).prop( 'disabled', false );
 };
 
 function getOperator( event ) {
     event.preventDefault();
-    operator = this.id;
-    num1 = Number( number );
-    number = '';
-    console.log( 'Setting operator to:', $(this).data() );
-    console.log( 'num1 is', num1);
+    operator = $(this).text();
+    console.log( 'Setting operator to:', $(this).text() );
     complete = false;
     $( '#display' ).append(` ${$(this).data().operator} `)
+    $( '#decimal-btn' ).prop( 'disabled', false );
+    $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).prop( 'disabled', true );
 };
 
 function calculate( event ) {
     event.preventDefault();
 
-    num2 = Number( number );
-    number = '';
+    let numbers = $( '#display' ).text().trim().split( / \+ | \- | \/ | \* /);
+    console.log( 'The numbers are', Number( numbers[0] ), Number( numbers[1] ) );
+    
+    num1 = numbers[0];
+    num2 = numbers[1];
 
     if ( validateInputs() ) {
 
@@ -82,8 +102,15 @@ function calculate( event ) {
             num1,
             num2,
             operator
-        };
+        }
+        postToServer( equation )
+    }
+    else {
+        alert( 'Please input all parts of the equation.' );
+    }
+};
 
+function postToServer( equation ) {
         $.ajax({
             method: 'POST',
             url: '/calculate',
@@ -96,16 +123,15 @@ function calculate( event ) {
             console.log( 'Error', error );
         })
 
-        console.log( 'Sending Equation to server', equation );
+    console.log( 'Sending Equation to server', equation );
 
-        appendCalculationsToDom();
+    appendCalculationsToDom();
 
-        operator = null;
-    }
-    else {
-        alert( 'Please input all parts of the equation.' );
-    }
+    operator = null;
+
     complete = true;
+    $( '#decimal-btn' ).prop( 'disabled', false );
+    $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).prop( 'disabled', false );
 };
 
 function validateInputs() {
@@ -130,15 +156,14 @@ function appendCalculationsToDom() {
         let history = $( '#calculationList');
         $( '#currentResult' ).empty()
         history.empty(); 
-        if ( result != undefined ) {
-            console.log( 'Got result from server', result );
-            let currentResult = result[0].result;
-            for ( let i = 0; i < result.length; i++ ) {
-                history.append(`<li>${result[i].num1} ${result[i].operator} ${result[i].num2} = ${result[i].result}</li>`)
-            }
-            $( '#display' ).empty();
-            $( '#display' ).append( `<p style="text-align:center">${currentResult}</p>` );
+        console.log( 'Got result from server', result );
+        let currentResult = result[0].result;
+        for ( let i = 0; i < result.length; i++ ) {
+            history.append(`<li data-calculation="${ result[i] }">
+                ${result[i].num1} ${result[i].operator} ${result[i].num2} = ${result[i].result}</li>`)
         }
+        $( '#display' ).empty();
+        $( '#display' ).append( `<p style="text-align:center">${currentResult}</p>` );
     })
     
 }

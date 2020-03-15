@@ -22,26 +22,22 @@ app.post( '/calculate', ( req, res ) => {
     let result;
 
     switch ( req.body.operator ) {
-        case 'add-btn':
+        case '+':
             result = add( num1, num2 );
-            operator = '+';
             break;
-        case 'subtract-btn':
+        case '-':
             result = subtract( num1, num2 );
-            operator = '-';
             break;
-        case 'multiply-btn':
+        case '*':
             result = multiply( num1, num2 );
-            operator = '*';
             break;
-        case 'divide-btn':
+        case '/':
             result = divide( num1, num2 );
-            operator = '/'
             break;
     };
 
     req.body.result = result;
-    req.body.operator = operator;
+    // req.body.operator = operator;
     calculationsArray.unshift( req.body );
 
     console.log( 'Stored calculation on server', calculationsArray );
