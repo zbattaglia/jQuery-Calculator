@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vendors/jquery-3.4.1.min.js"></script>
+    <script src="./vendors//bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="./scripts/client.js"></script>
+    <link rel="stylesheet" href="./vendors/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Server Side Calculato</title>
+</head>
+<body>
+    <h1>Server Side Calculator</h1>
+    <form class="container-fluid" id="input-form">
+        <input type="number" id="num1-in" />
+        <button id="add-btn"> + </button >
+        <button id="subtract-btn"> - </button>
+        <button id="multiply-btn"> * </button>
+        <button id="divide-btn"> / </button>
+        <input type="number" id="num2-in" />
+        <button id="equals-btn"> = </button>
+        <br />
+        <button id="clear-btn"> C </button>
+        <button id="reset-btn"> &#8635 </button>
+    </form>
+    <h2 id="currentResult"></h2>
+    <section id="calculationHistory">
+        <ul id="calculationList">
+            <!-- jQuery to fill in -->
+        </ul>
+    </section>
+</body>
+</html>
