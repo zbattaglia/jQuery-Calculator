@@ -10,7 +10,25 @@ function ready() {
     $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).on( 'click', getOperator );
     $( '#equals-btn' ).on( 'click', calculate );
     $( '#clear-btn' ).on( 'click', clearInputs );
+    $( '#reset-btn' ).on( 'click', clearHistory );
 
+};
+
+function clearHistory( event ) {
+    event.preventDefault();
+    console.log( 'Resetting History' );
+    
+    $.ajax({
+        method: 'DELETE',
+        url: '/delete'
+    })
+    .then( function( response ) {
+        console.log( 'Deleting History', response );
+        appendCalculationsToDom();
+    })
+    .catch( function( error ) {
+        console.log( 'Error:', error );
+    })
 };
 
 function clearInputs( event ) {
@@ -84,15 +102,17 @@ function appendCalculationsToDom() {
         url: '/history'
     })
     .then( function( result ) {
-        console.log( 'Got result from server', result );
         let history = $( '#calculationList');
         $( '#currentResult' ).empty()
-        let currentResult = result[0].result;
-        history.empty();
-        for ( let i = result.length-1; i > 0; i-- ) {
-            history.append(`<li>${result[i].num1} ${result[i].operator} ${result[i].num2} = ${result[i].result}</li>`)
-        };
-        $( '#currentResult' ).append( `<h2> ${currentResult} </h2>` );
+        history.empty(); 
+        if ( result != undefined ) {
+            console.log( 'Got result from server', result );
+            let currentResult = result[0].result;
+            for ( let i = result.length-1; i > 0; i-- ) {
+                history.append(`<li>${result[i].num1} ${result[i].operator} ${result[i].num2} = ${result[i].result}</li>`)
+            }
+            $( '#currentResult' ).append( `<h2> ${currentResult} </h2>` );
+        }
     })
     
 }

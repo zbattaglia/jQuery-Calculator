@@ -55,6 +55,12 @@ app.get( '/history', ( req, res ) => {
     res.send( calculationsArray );
 });
 
+app.delete( '/delete', ( req, res ) => {
+    console.log( 'Deleting history on server' );
+    calculationsArray = [];
+    res.sendStatus( 204 );
+});
+
 app.listen( PORT, () => {
     console.log( 'Server is listening on port:', PORT );
 });
