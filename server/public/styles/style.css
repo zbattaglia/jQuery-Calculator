@@ -53,6 +53,8 @@ button:active {
 #calculationHistory {
     text-align: center;
     list-style: inside;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 1.25em;
 }
 
 #display {
