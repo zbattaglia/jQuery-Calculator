@@ -4,6 +4,7 @@ let operator = null;
 let num1;
 let num2;
 let complete = false;
+let decimal = false;
 
 function ready() {
     console.log( 'jQuery Ready on the client.');
@@ -11,6 +12,7 @@ function ready() {
 
     appendCalculationsToDom();
 
+    // $( '#body').keypress( handleKeyInput );
     $( '#add-btn, #subtract-btn, #multiply-btn, #divide-btn' ).on( 'click', getOperator );
     $( '#equals-btn' ).on( 'click', calculate );
     $( '#clear-btn' ).on( 'click', clearInputs );
@@ -19,6 +21,25 @@ function ready() {
     $( '#calculationList' ).on( 'click', 'li', redoCalc );
 
 };
+
+// allows users to type in their keyboard to enter equations
+// function handleKeyInput ( event ) {
+//     console.log( 'Keypress detected', event.keyCode);
+//     if( event.keyCode >= 48 && event.keyCode <= 57 ) {
+//         $( '#display' ).append( event.key );
+//     }
+//     else if( event.keyCode === 46 ){
+//         if ( decimal === false ) {
+//             $( '#display' ).append( event.key );
+//             decimal = true;
+//         }
+//     }
+//     else if ( event.keyCode === 42 || event.keyCode === 43 || event.keyCode === 45 || event.keyCode === 47 ) {
+//         getOperator( );
+//     }
+// };
+// if event.Keycode = an operator, get operatorm reset decimal flag
+// if event.keyCode = return, call the post display
 
 function redoCalc( event ) {
     event.preventDefault();
