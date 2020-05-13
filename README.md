@@ -10,8 +10,8 @@ This project was used to learn more about setting up a server and client, making
 
 ## Screen Shot
 
-![Initial Page Load](images/Screen Shot 2020-03-15 at 10.23.19 PM.png)
-![Example Calculation](images/Screen Shot 2020-03-15 at 10.23.53 PM.png)
+![Calculator View](images/Calculator.png)
+![In Use Example](images/ExampleInUse.png)
 
 ### Prerequisites
 
