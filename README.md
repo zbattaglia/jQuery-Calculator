@@ -1,4 +1,4 @@
-# Server Side Calculator
+# jQuery Calculator
 
 ## Description
 
